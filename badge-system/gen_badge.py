@@ -258,12 +258,12 @@ def _server(d, b, lw, col):
         d.ellipse([x0+(x1-x0)*0.72,y0+(y1-y0)*(fy+0.14),x0+(x1-x0)*0.82,y0+(y1-y0)*(fy+0.26)], fill=col)
 
 def _book(d, b, lw, col):
-    x0,y0,x1,y1=b; cx=(x0+x1)/2
-    d.line([cx,y0+(y1-y0)*0.1,cx,y1], fill=col, width=lw)
-    d.arc([x0,y0,cx,y1+(y1-y0)*0.3],270,360,fill=col,width=lw)
-    d.arc([cx,y0,x1,y1+(y1-y0)*0.3],180,270,fill=col,width=lw)
-    d.line([x0,y0+(y1-y0)*0.12,x0,y1], fill=col, width=lw)
-    d.line([x1,y0+(y1-y0)*0.12,x1,y1], fill=col, width=lw)
+    # clean closed book: cover rectangle + spine line + a couple page lines
+    x0,y0,x1,y1=b
+    d.rectangle([x0,y0,x1,y1], outline=col, width=lw)
+    d.line([x0+(x1-x0)*0.26,y0,x0+(x1-x0)*0.26,y1], fill=col, width=lw)
+    for fy in (0.35,0.6):
+        d.line([x0+(x1-x0)*0.42,y0+(y1-y0)*fy,x1-(x1-x0)*0.12,y0+(y1-y0)*fy], fill=col, width=max(1,int(lw*0.85)))
 
 def _flag(d, b, lw, col):
     x0,y0,x1,y1=b
@@ -318,11 +318,11 @@ def _refresh(d, b, lw, col):
     d.polygon([(x1-(x1-x0)*0.1,y0),(x1,y0+(y1-y0)*0.28),(x1-(x1-x0)*0.32,y0+(y1-y0)*0.22)], fill=col)
 
 def _handshake(d, b, lw, col):
-    x0,y0,x1,y1=b; cy=(y0+y1)/2
-    d.line([x0,cy,x0+(x1-x0)*0.4,cy], fill=col, width=lw)
-    d.line([x1,cy,x1-(x1-x0)*0.4,cy], fill=col, width=lw)
-    d.polygon([(x0+(x1-x0)*0.35,cy-(y1-y0)*0.12),(x0+(x1-x0)*0.65,cy-(y1-y0)*0.12),
-               (x0+(x1-x0)*0.5,cy+(y1-y0)*0.18)], fill=col)
+    # two interlocking chevrons meeting in the middle = clasped hands, reads clean
+    x0,y0,x1,y1=b; cx=(x0+x1)/2; cy=(y0+y1)/2
+    d.line([(x0,y0+(y1-y0)*0.3),(cx,cy),(x0,y1-(y1-y0)*0.3)], fill=col, width=lw, joint="curve")
+    d.line([(x1,y0+(y1-y0)*0.3),(cx,cy),(x1,y1-(y1-y0)*0.3)], fill=col, width=lw, joint="curve")
+    d.ellipse([cx-lw,cy-lw,cx+lw,cy+lw], fill=col)
 
 def _play(d, b, lw, col):
     x0,y0,x1,y1=b

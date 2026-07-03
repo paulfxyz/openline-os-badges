@@ -60,7 +60,7 @@
     { "slug": "badge-key-results",           "label": "Key Results",            "color": "cyan",      "icon": "chart",        "page": "OKRs / Key Results" },
     { "slug": "badge-closed",                "label": "Closed",                 "color": "maroon",    "icon": "check",        "page": "Boards / Closed" },
 
-    { "slug": "badge-documentation",         "label": "Documentation",          "color": "purple",    "icon": "book",         "page": "Knowledge / Documentation" },
+    { "slug": "badge-documentation",         "label": "Documentation",          "color": "purple",    "icon": "file",         "page": "Knowledge / Documentation" },
     { "slug": "badge-sops-and-workflows",    "label": "SOPs & Workflows",       "color": "navy",      "icon": "list",         "page": "Knowledge / SOPs & Workflows" },
     { "slug": "badge-tips-best-practices",   "label": "Tips & Best Practices",  "color": "gold",      "icon": "bulb",         "page": "Knowledge / Tips & Best Practices" },
     { "slug": "badge-golden-rule",           "label": "Golden Rule",            "color": "emerald",   "icon": "star",         "page": "Knowledge / Golden Rule" },
