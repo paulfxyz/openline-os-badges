@@ -399,6 +399,90 @@
       "color": "fuchsia",
       "icon": "tag",
       "page": "Meta / Badge System"
+    },
+    {
+      "slug": "badge-hr-resources",
+      "label": "HR Resources",
+      "color": "teal",
+      "icon": "handshake",
+      "page": "Navigation / HR Resources"
+    },
+    {
+      "slug": "badge-hr-onboarding",
+      "label": "Onboarding Guide",
+      "color": "violet",
+      "icon": "book",
+      "page": "HR / Onboarding Guide"
+    },
+    {
+      "slug": "badge-hr-perks-vacations",
+      "label": "Perks & Vacations",
+      "color": "coral",
+      "icon": "star",
+      "page": "HR / Perks & Vacations"
+    },
+    {
+      "slug": "badge-hr-salary",
+      "label": "Salary Guidelines",
+      "color": "gold",
+      "icon": "dollar",
+      "page": "HR / Salary Guidelines"
+    },
+    {
+      "slug": "badge-hr-open-company",
+      "label": "Open Company",
+      "color": "sky",
+      "icon": "globe",
+      "page": "HR / Open Company"
+    },
+    {
+      "slug": "badge-hr-meetups",
+      "label": "Quarterly Meetups",
+      "color": "rose",
+      "icon": "calendar",
+      "page": "HR / Quarterly Meetups"
+    },
+    {
+      "slug": "badge-hr-virtual-office",
+      "label": "Virtual Office",
+      "color": "iris",
+      "icon": "building",
+      "page": "HR / Virtual Office"
+    },
+    {
+      "slug": "badge-hr-gender-equality",
+      "label": "Gender Equality",
+      "color": "magenta",
+      "icon": "users",
+      "page": "HR / Gender Equality"
+    },
+    {
+      "slug": "badge-hr-lgbtq",
+      "label": "LGBTQ+",
+      "color": "fuchsia",
+      "icon": "flag",
+      "page": "HR / LGBTQ+"
+    },
+    {
+      "slug": "badge-hr-respect",
+      "label": "Morals & Religions",
+      "color": "bronze",
+      "icon": "shield",
+      "page": "HR / Morals & Religions"
+    },
+    {
+      "slug": "badge-hr-software",
+      "label": "Software Reimbursement",
+      "color": "cyan",
+      "icon": "plug",
+      "page": "HR / Software Reimbursement"
+    },
+    {
+      "slug": "badge-hr-travel",
+      "label": "Travel Reimbursement",
+      "color": "forest",
+      "icon": "compass",
+      "page": "HR / Travel Reimbursement"
     }
   ],
   "assets": [
