@@ -518,6 +518,13 @@
       "color": "plum",
       "icon": "shield",
       "page": "HR / Confidentiality"
+    },
+    {
+      "slug": "badge-hr-esr",
+      "label": "Environmental & Social Responsibility",
+      "color": "olive",
+      "icon": "globe",
+      "page": "HR / Environmental & Social Responsibility"
     }
   ],
   "assets": [
