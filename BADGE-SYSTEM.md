@@ -15,26 +15,25 @@ A **badge** is a solid rounded pill with:
 - an **ALL-CAPS** label in **Lato Black**, white, vertically centered.
 
 They sit above inline databases / at the top of tabs to label a section. The look is
-consistent everywhere because every badge is produced by the same generator: `scripts/gen.py`.
+consistent everywhere because every badge is produced by the same generator: `badge-system/build_all.py` (reading `badge-system/badges.json`).
 
 ---
 
 ## 2. Repo & layout
 
-- **Repo:** `paulfxyz/openline-audit-shots` (https://github.com/paulfxyz/openline-audit-shots)
-- **Generator:** `scripts/gen.py` — exposes `make(...)` and `make_header(...)`
-- **Icons:** `scripts/lucide/*.svg` — download more from Lucide as needed
-- **Output (working dir):** `out_images/` (git-ignored scratch)
+- **Primary repo:** `paulfxyz/openline-os-badges` (https://github.com/paulfxyz/openline-os-badges)
+- **Public mirror:** `paulfxyz/openline-audit-shots` — byte-identical, keeps legacy URLs alive. Never edited directly (see the README's *Mirror & URL safety net*).
+- **Generator (source of truth):** `badge-system/badges.json` + `badge-system/gen_badge.py` + `badge-system/build_all.py`
 - **Published badges:** `os-nav/` — committed PNGs served raw to Notion
-- **Per-batch scripts:** `scripts/gen_*.py` (e.g. `gen_archives_badges.py`, `gen_production_badges.py`)
+- **Legacy generator:** `scripts/gen.py` + `scripts/gen_*.py` (older per-batch flow, kept for reference; new work goes through `badge-system/`)
 
-Notion embeds badges via the **raw GitHub URL** pinned to a commit SHA:
+Notion embeds badges via the **raw GitHub URL on `main`**, referencing a stable slug:
 
 ```
-https://raw.githubusercontent.com/paulfxyz/openline-audit-shots/<SHA>/os-nav/<file>.png
+https://raw.githubusercontent.com/paulfxyz/openline-os-badges/main/os-nav/<file>.png
 ```
 
-Pin to a **specific commit SHA** (not `main`) so the image never changes under a page.
+Referencing `main` by **stable slug** means a restyle (same slug, new PNG) updates every page at once. When you need an *immediate* refresh past caches, append a `?c=<short-sha>` token — see the README's *image cache trap*.
 
 ---
 
@@ -183,7 +182,7 @@ cd scripts && python3 gen_<area>_badges.py
 ### c. Publish
 
 ```bash
-cd /home/user/workspace/openline-audit-shots
+cd /home/user/workspace/openline-os-badges
 cp out_images/badge-x-*.png os-nav/
 git -c user.email="hello@paulfleury.com" -c user.name="Paul Fleury" \
     add os-nav/badge-x-*.png scripts/gen_<area>_badges.py scripts/lucide/<any-new>.svg
@@ -197,7 +196,7 @@ git rev-parse HEAD            # <-- copy this SHA
 
 ```bash
 curl -s -o /dev/null -w "%{http_code}\n" \
-  "https://raw.githubusercontent.com/paulfxyz/openline-audit-shots/<SHA>/os-nav/badge-x-overview.png"
+  "https://raw.githubusercontent.com/paulfxyz/openline-os-badges/main/os-nav/badge-x-overview.png"
 ```
 
 ### e. Embed in Notion
@@ -205,7 +204,7 @@ curl -s -o /dev/null -w "%{http_code}\n" \
 In the target tab/section, place the image right above the inline database:
 
 ```
-![](https://raw.githubusercontent.com/paulfxyz/openline-audit-shots/<SHA>/os-nav/badge-x-overview.png)
+![](https://raw.githubusercontent.com/paulfxyz/openline-os-badges/main/os-nav/badge-x-overview.png)
 ```
 
 ---
@@ -213,7 +212,7 @@ In the target tab/section, place the image right above the inline database:
 ## 8. Rules / gotchas
 
 - **Family = `section` preset, 34px tall, `autowidth=True`.** Don't change H.
-- **Pin every Notion embed to a commit SHA**, never `main`.
+- **Reference `main` by stable slug** (current convention) so a restyle updates every page at once; use a `?c=<short-sha>` token only when you need to bust caches immediately.
 - **Preview before committing** — overflow and wrong-icon mistakes are easy to miss.
 - Inline color/`<color:>` and `<page>` mention tags **do not render** inside Notion callout
   text via the API (they get escaped) — style links with a leading `→` and bold + `↗` instead.
@@ -228,8 +227,8 @@ In the target tab/section, place the image right above the inline database:
 > "Make section badges for the tabs on `<Notion page/URL>`, matching the Openline badge
 > family (BADGE-SYSTEM.md): `section` preset, 34px, Lato-Black caps, Lucide icon in a light
 > tint. Pick a coherent color family from PAL with a distinct hue per tab. Generate, preview
-> them for me, then commit + push to `openline-audit-shots`, verify the raw URLs are 200, and
-> embed each badge above its content pinned to the new SHA."
+> them for me, then commit + push to `openline-os-badges` (and sync the mirror), verify the raw URLs are 200, and
+> embed each badge above its content via the `main` slug URL."
 
 > **Single new badge:**
 > "Add one section badge `badge-<name>.png`, color `<PAL name>`, icon `<lucide name>`,

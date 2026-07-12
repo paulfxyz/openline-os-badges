@@ -33,7 +33,7 @@ git push
 ```
 
 Because pages reference badges by stable slug via raw GitHub URL
-(`https://raw.githubusercontent.com/paulfxyz/openline-audit-shots/main/os-nav/<slug>.png`),
+(`https://raw.githubusercontent.com/paulfxyz/openline-os-badges/main/os-nav/<slug>.png`),
 committing new PNGs over the old ones updates **every page at once** — no Notion
 edits required for a pure restyle.
 
@@ -45,7 +45,7 @@ edits required for a pure restyle.
    ```
 2. `python3 build_all.py --dir ../os-nav`
 3. Reference it in Notion:
-   `![](https://raw.githubusercontent.com/paulfxyz/openline-audit-shots/main/os-nav/badge-my-thing.png)`
+   `![](https://raw.githubusercontent.com/paulfxyz/openline-os-badges/main/os-nav/badge-my-thing.png)`
 
 ## Style spec
 

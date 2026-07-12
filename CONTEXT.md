@@ -1,26 +1,31 @@
 # Openline OS — Badge & Hero Image System
 
-This repo hosts every pill/badge/hero image used across the **Openline OS** Notion
-workspace (OS section pages + staff dashboards). Images are referenced from Notion
-via pinned-SHA `raw.githubusercontent.com` URLs so they never break.
+This repo (**`paulfxyz/openline-os-badges`**, mirrored publicly at the former name
+`paulfxyz/openline-audit-shots`) hosts every pill/badge/hero image used across the
+**Openline OS** Notion workspace (OS section pages + staff dashboards + the HR
+Resources hub). Images are referenced from Notion via `main`-pinned
+`raw.githubusercontent.com` URLs, by stable slug, so a restyle updates every page at once.
 
 ---
 
 ## 1. How images are served
 
-Raw URL pattern (always pin a commit SHA, never use `main`):
+Raw URL pattern (reference `main` by stable slug):
 
 ```
-https://raw.githubusercontent.com/paulfxyz/openline-audit-shots/<SHA>/<folder>/<file>.png
+https://raw.githubusercontent.com/paulfxyz/openline-os-badges/main/<folder>/<file>.png
 ```
 
-| Folder     | Used by                          | Current SHA  |
-|------------|----------------------------------|--------------|
-| `os-nav/`  | OS section pages (Plan, Develop…) | `216b739b`   |
-| `staff/`   | Staff dashboards + templates      | `4dcdcdd`    |
+| Folder     | Used by                           |
+|------------|-----------------------------------|
+| `os-nav/`  | OS section pages + HR Resources   |
+| `staff/`   | Staff dashboards + templates      |
 
-> When you regenerate images and push, the SHA changes. You must then update the
-> SHA in the Notion pages that reference them (see section 5).
+> Because pages reference `main` by **slug**, committing a restyled PNG over the old
+> one updates every page at once — no Notion edits needed. Append a `?c=<short-sha>`
+> token only when you need to force an immediate refresh past caches (see README's
+> *image cache trap*). The public mirror serves the same files for any legacy
+> `openline-audit-shots` URL.
 
 ---
 
@@ -29,7 +34,7 @@ https://raw.githubusercontent.com/paulfxyz/openline-audit-shots/<SHA>/<folder>/<
 All images share one look: solid rounded pill + Lucide icon (light tint of the
 fill color) + bold **ALL-CAPS** white label (Lato Black).
 
-### Size presets (`scripts/gen.py` → `PRESETS`)
+### Size presets (`badge-system/gen_badge.py` → `PRESETS`; legacy `scripts/gen.py`)
 
 | Preset    | Size (W×H) | Use                                   |
 |-----------|-----------|----------------------------------------|
@@ -120,29 +125,30 @@ To **add a new badge**: edit the relevant list in `scripts/build_all.py`
 `scripts/make_staff.py`, pick a `PAL` color + a Lucide icon name (must exist in
 `scripts/lucide/`), then re-run the script.
 
-To **change a size**: edit `PRESETS` in `scripts/gen.py`.
+To **change a size**: edit `PRESETS` in `badge-system/gen_badge.py` (current) or the legacy `scripts/gen.py`.
 
 ---
 
 ## 5. Publishing changes (the full loop)
 
 ```bash
-# after regenerating into out_images/
-cp out_images/<changed>.png os-nav/      # or staff/
-git add os-nav staff scripts CONTEXT.md
-git commit -m "Describe the change"
+# after re-rendering (badge-system/build_all.py --dir ../os-nav) or make_staff.py
+git add badge-system os-nav staff scripts CONTEXT.md
+git -c user.email="hello@paulfleury.com" -c user.name="Paul Fleury" commit -m "Describe the change"
 git push origin main
-git rev-parse HEAD                        # <- this is your new SHA
+bash scripts/sync-mirror.sh               # keep the public mirror identical
 ```
 
-Then in Notion, update the referencing pages to the new SHA. Easiest is a
-find-and-replace of the old SHA → new SHA inside each page's image URLs.
+Because Notion references `main` by **stable slug**, a pure restyle (same slug,
+new PNG) needs **no Notion edits** — the new bytes appear on every page once caches
+expire. Only when you need an immediate refresh do you bump the `?c=<short-sha>`
+token in the affected embeds.
 
 **Pages that reference these images:**
-- OS pages: Plan, Develop, Operate, Grow, Team, Guidebook, Executive, Archives,
-  Staff Dashboards index, Openline OS (Home).
-- Staff: every page in the **People (Staff)** database, plus the two database
-  templates ("New Staff Dashboard" = default, "New Staff (V2)").
+- OS pages: Executive, Team (incl. the **HR Resources** hub + its 11 docs), Plan,
+  Develop, Operate, Grow, Production, Guidebook, Archives, and Openline OS (Home).
+- Staff: every page in the **People (Staff)** database, plus the database
+  templates.
 
-> Tip: keep the OS folder and staff folder on independent SHAs — you can re-push
-> one without disturbing the other, as long as you only update the affected pages.
+> Tip: `os-nav/` and `staff/` share one repo on `main`; a slug-level restyle is
+> global. Use the mirror-sync step after every push so both raw hosts match.
