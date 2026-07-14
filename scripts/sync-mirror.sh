@@ -2,7 +2,7 @@
 # sync-mirror.sh — mirror the primary badge repo to its public twin.
 #
 # The Openline OS badge system lives in the PRIMARY repo:
-#     paulfxyz/openline-os-badges
+#     paulfxyz/openline-notion
 # and is mirrored byte-for-byte into the PUBLIC MIRROR:
 #     paulfxyz/openline-audit-shots   (the repo's former name)
 #
@@ -18,7 +18,7 @@
 # push access to the mirror. Run from anywhere inside the repo.
 set -euo pipefail
 
-PRIMARY_SLUG="paulfxyz/openline-os-badges"
+PRIMARY_SLUG="paulfxyz/openline-notion"
 MIRROR_SLUG="paulfxyz/openline-audit-shots"
 BRANCH="main"
 
@@ -28,7 +28,7 @@ cd "$ROOT"
 
 # Derive the mirror URL from origin so it works through the git proxy too.
 ORIGIN_URL="$(git remote get-url origin)"
-MIRROR_URL="${ORIGIN_URL/openline-os-badges/openline-audit-shots}"
+MIRROR_URL="${ORIGIN_URL/openline-notion/openline-audit-shots}"
 
 echo "→ Primary : $ORIGIN_URL"
 echo "→ Mirror  : $MIRROR_URL"

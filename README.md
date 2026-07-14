@@ -34,7 +34,7 @@
 Every badge and hero image in the Openline OS is embedded with a **`raw.githubusercontent.com`** URL like:
 
 ```
-https://raw.githubusercontent.com/paulfxyz/openline-os-badges/main/os-nav/badge-tasks.png
+https://raw.githubusercontent.com/paulfxyz/openline-notion/main/os-nav/badge-tasks.png
 ```
 
 `raw.githubusercontent.com` **only serves files from public repositories.** If this repo is flipped to **private**, every one of those URLs returns `404` and **all badges, nav buttons, and hero banners across the entire OS (Executive, Team, Plan, Develop, Operate, Grow, Production, Guidebook, Archives, plus every staff dashboard and the HR Resources hub) break instantly.**
@@ -45,11 +45,11 @@ https://raw.githubusercontent.com/paulfxyz/openline-os-badges/main/os-nav/badge-
 
 ## Mirror & URL safety net
 
-This repo was renamed from **`openline-audit-shots`** → **`openline-os-badges`** to match what it actually does now. Because `raw.githubusercontent.com` does **not** follow GitHub's repo-rename redirect, a public **mirror** is kept at the old name so historical embeds never break:
+This repo was renamed from **`openline-audit-shots`** → **`openline-notion`** to match what it actually does now. Because `raw.githubusercontent.com` does **not** follow GitHub's repo-rename redirect, a public **mirror** is kept at the old name so historical embeds never break:
 
 | Repo | Role | Raw URL base |
 | --- | --- | --- |
-| **`openline-os-badges`** | ✅ Primary / canonical — edit here | `raw.githubusercontent.com/paulfxyz/openline-os-badges/main/…` |
+| **`openline-notion`** | ✅ Primary / canonical — edit here | `raw.githubusercontent.com/paulfxyz/openline-notion/main/…` |
 | `openline-audit-shots` | 🪞 Public mirror — do not edit directly | `raw.githubusercontent.com/paulfxyz/openline-audit-shots/main/…` |
 
 Both serve byte-identical files. New work references the **primary** repo; the mirror exists purely so any old `openline-audit-shots` URL still resolves. Keep them in sync with [`scripts/sync-mirror.sh`](#keeping-the-mirror-in-sync) after every push. **Both must stay public.**
@@ -90,7 +90,7 @@ Both serve byte-identical files. New work references the **primary** repo; the m
 ## Repository layout
 
 ```
-openline-os-badges/
+openline-notion/
 ├── README.md                ← you are here
 ├── BADGE-SYSTEM.md          ← design system + full generator reference
 ├── CONTEXT.md               ← how images reach Notion + full inventory + pages
@@ -151,7 +151,7 @@ Full per-image listing lives in [`CONTEXT.md`](CONTEXT.md).
 Notion embeds reference the **primary** repo on `main`:
 
 ```
-https://raw.githubusercontent.com/paulfxyz/openline-os-badges/main/os-nav/<slug>.png
+https://raw.githubusercontent.com/paulfxyz/openline-notion/main/os-nav/<slug>.png
 ```
 
 Because pages reference badges by **stable slug on `main`**, committing a restyled PNG over the old one updates **every page at once** — no Notion edits required for a pure restyle. To force past caches when you *do* need an immediate refresh, append a cache-buster token (`?c=<short-sha>`) — see [the image cache trap](#the-image-cache-trap).
@@ -173,7 +173,7 @@ Because pages reference badges by **stable slug on `main`**, committing a restyl
 3. **Preview before committing** — open `badge-system/preview.png` (or build a stacked sheet) and check for text overflow, wrong icon, or a color clashing with a sibling.
 4. Reference it in Notion:
    ```
-   ![](https://raw.githubusercontent.com/paulfxyz/openline-os-badges/main/os-nav/badge-my-thing.png)
+   ![](https://raw.githubusercontent.com/paulfxyz/openline-notion/main/os-nav/badge-my-thing.png)
    ```
 
 Palette and icon names are documented in [`BADGE-SYSTEM.md`](BADGE-SYSTEM.md).
@@ -217,10 +217,10 @@ Two helpers snapshot and rebuild the whole repo independently of GitHub:
 
 ```bash
 # Create a timestamped backup (git bundle = full history + a plain tarball of files)
-bash scripts/backup.sh              # writes to ./backups/openline-os-badges-<UTC>.{bundle,tar.gz}
+bash scripts/backup.sh              # writes to ./backups/openline-notion-<UTC>.{bundle,tar.gz}
 
 # Restore from a backup into a fresh directory
-bash scripts/restore.sh backups/openline-os-badges-<UTC>.bundle ./restored-repo
+bash scripts/restore.sh backups/openline-notion-<UTC>.bundle ./restored-repo
 ```
 
 - The **`.bundle`** is a complete, self-contained clone of all branches and history — `git clone backup.bundle` reconstructs the repo exactly.
@@ -270,7 +270,7 @@ This repo is **actively maintained** alongside the Openline OS.
 
 ### 2026-07-12
 
-- 🔁 **Renamed** `openline-audit-shots` → `openline-os-badges` to reflect its real purpose (the OS badge system), and re-oriented all docs around it.
+- 🔁 **Renamed** `openline-audit-shots` → `openline-notion` to reflect its real purpose (the OS badge system), and re-oriented all docs around it.
 - 🪞 **Added a public mirror** at the old name so legacy `raw.githubusercontent.com/.../openline-audit-shots/...` URLs never break.
 - 💾 **Added backup/restore + mirror-sync scripts** (`scripts/backup.sh`, `scripts/restore.sh`, `scripts/sync-mirror.sh`).
 - 🧑‍🤝‍🧑 Added the **HR Resources** badge set (`badge-hr-*`) for the new OS ⟩ Team hub.

@@ -9,8 +9,8 @@
 #     bash scripts/restore.sh <backup-file> <destination-dir>
 #
 # Examples:
-#     bash scripts/restore.sh backups/openline-os-badges-20260712T053000Z.bundle ./restored
-#     bash scripts/restore.sh backups/openline-os-badges-20260712T053000Z.tar.gz  ./restored
+#     bash scripts/restore.sh backups/openline-notion-20260712T053000Z.bundle ./restored
+#     bash scripts/restore.sh backups/openline-notion-20260712T053000Z.tar.gz  ./restored
 set -euo pipefail
 
 SRC="${1:-}"

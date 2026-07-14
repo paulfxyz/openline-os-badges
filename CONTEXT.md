@@ -1,6 +1,6 @@
 # Openline OS — Badge & Hero Image System
 
-This repo (**`paulfxyz/openline-os-badges`**, mirrored publicly at the former name
+This repo (**`paulfxyz/openline-notion`**, mirrored publicly at the former name
 `paulfxyz/openline-audit-shots`) hosts every pill/badge/hero image used across the
 **Openline OS** Notion workspace (OS section pages + staff dashboards + the HR
 Resources hub). Images are referenced from Notion via `main`-pinned
@@ -13,7 +13,7 @@ Resources hub). Images are referenced from Notion via `main`-pinned
 Raw URL pattern (reference `main` by stable slug):
 
 ```
-https://raw.githubusercontent.com/paulfxyz/openline-os-badges/main/<folder>/<file>.png
+https://raw.githubusercontent.com/paulfxyz/openline-notion/main/<folder>/<file>.png
 ```
 
 | Folder     | Used by                           |
