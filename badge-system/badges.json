@@ -644,6 +644,13 @@
       "color": "violet",
       "icon": "refresh",
       "page": "Internal Apps"
+    },
+    {
+      "slug": "badge-project-management",
+      "label": "Project Management",
+      "color": "orange",
+      "icon": "layers",
+      "page": "Develop / Project Management"
     }
   ],
   "assets": [
