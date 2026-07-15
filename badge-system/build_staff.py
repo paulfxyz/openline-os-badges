@@ -23,7 +23,7 @@ STAFF = [
 results = []
 for slug, label, color, icon, preset in STAFF:
     path, size = build_badge(label, slug, color=color, icon=icon,
-                             out_dir=OUT, preset=preset, export_scale=2)
+                             out_dir=OUT, preset=preset, export_scale=1)
     results.append((slug, label, color, icon, preset, size))
     print(f"{slug:34s} {str(size):12s} [{color}/{icon}/{preset}]  {label}")
 
@@ -33,7 +33,7 @@ d = json.load(open(bj))
 existing = {it.get("slug") for it in d["badges"]}
 for slug, label, color, icon, preset, size in results:
     entry = {"slug": slug, "label": label, "color": color, "icon": icon,
-             "preset": preset, "folder": "staff", "export_scale": 2,
+             "preset": preset, "folder": "staff",
              "page": "Team / Staff Dashboard"}
     # replace if present, else append
     d["badges"] = [it for it in d["badges"] if it.get("slug") != slug]

@@ -666,7 +666,6 @@
       "icon": "home",
       "preset": "button",
       "folder": "staff",
-      "export_scale": 2,
       "page": "Team / Staff Dashboard"
     },
     {
@@ -676,7 +675,6 @@
       "icon": "check",
       "preset": "badge",
       "folder": "staff",
-      "export_scale": 2,
       "page": "Team / Staff Dashboard"
     },
     {
@@ -686,7 +684,6 @@
       "icon": "refresh",
       "preset": "badge",
       "folder": "staff",
-      "export_scale": 2,
       "page": "Team / Staff Dashboard"
     },
     {
@@ -696,7 +693,6 @@
       "icon": "folder",
       "preset": "badge",
       "folder": "staff",
-      "export_scale": 2,
       "page": "Team / Staff Dashboard"
     },
     {
@@ -706,7 +702,6 @@
       "icon": "target",
       "preset": "badge",
       "folder": "staff",
-      "export_scale": 2,
       "page": "Team / Staff Dashboard"
     },
     {
@@ -716,7 +711,6 @@
       "icon": "chart",
       "preset": "badge",
       "folder": "staff",
-      "export_scale": 2,
       "page": "Team / Staff Dashboard"
     },
     {
@@ -726,7 +720,6 @@
       "icon": "book",
       "preset": "badge",
       "folder": "staff",
-      "export_scale": 2,
       "page": "Team / Staff Dashboard"
     },
     {
@@ -736,7 +729,6 @@
       "icon": "users",
       "preset": "badge",
       "folder": "staff",
-      "export_scale": 2,
       "page": "Team / Staff Dashboard"
     }
   ],
