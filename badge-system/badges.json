@@ -746,6 +746,27 @@
       "preset": "button_fixed",
       "folder": "staff",
       "page": "Team / Staff Dashboard"
+    },
+    {
+      "slug": "badge-b2b-sales",
+      "label": "B2B Sales",
+      "color": "cobalt",
+      "icon": "building",
+      "page": "Grow / B2B Sales"
+    },
+    {
+      "slug": "badge-pipeline",
+      "label": "Pipeline",
+      "color": "sky",
+      "icon": "target",
+      "page": "Boards / Pipeline"
+    },
+    {
+      "slug": "badge-won",
+      "label": "Won",
+      "color": "turquoise",
+      "icon": "check",
+      "page": "Boards / Won"
     }
   ],
   "assets": [
